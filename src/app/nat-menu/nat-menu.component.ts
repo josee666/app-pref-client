@@ -22,7 +22,7 @@ export class NatMenuComponent implements OnInit {
 
   listCardKitchen = [
     {
-      path: 'assets/photo/cuisine1.jpg',
+      path: './assets/photo/cuisine1.jpg',
       title: 'titre photo 1',
       desc: 'une petite description de la photo 1'
     }, 
@@ -40,17 +40,17 @@ export class NatMenuComponent implements OnInit {
   
   listCardBathtub = [
     {
-      path: 'assets/photo/salle_bain1.jpg',
+      path: './assets/photo/salle_bain1.jpg',
       title: 'titre photo 1',
       desc: 'une petite description de la photo 1'
     }, 
     {
-      path: 'assets/photo/salle_bain2.jpg',
+      path: './assets/photo/salle_bain2.jpg',
       title: 'titre photo 2',
       desc: 'une petite description de la photo 2'
     },
     {
-      path: 'assets/photo/salle_bain3.jpg',
+      path: './assets/photo/salle_bain3.jpg',
       title: 'titre photo 3',
       desc: 'une petite description de la photo 3'
     }
