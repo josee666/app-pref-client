@@ -17,7 +17,7 @@ export class CardContainerComponent implements OnInit {
   //     desc: 'une petite description de la photo 1'
   //   }, 
   //   {
-  //     path: '../../assets/photo/armoire1.jpg',
+  //     path: '../assets/photo/armoire1.jpg',
   //     title: 'titre photo 2',
   //     desc: 'une petite description de la photo 2'
   //   }
