@@ -32,7 +32,7 @@ export class NatMenuComponent implements OnInit {
       desc: 'une petite description de la photo 2'
     },
     {
-      path: '/assets/photo/cuisine3.jpg',
+      path: './assets/photo/cuisine3.jpg',
       title: 'titre photo 3',
       desc: 'une petite description de la photo 3'
     }
