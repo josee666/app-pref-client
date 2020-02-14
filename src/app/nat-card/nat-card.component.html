@@ -3,9 +3,10 @@
     <mat-card-header>
         <!-- <div mat-card-avatar class="avatar-img"></div> -->
         <mat-icon mat-card-avatar>{{avatar}}</mat-icon>
+        {{index}}
 
        <mat-card-title>{{title}}</mat-card-title>
-       <mat-card-subtitle> sous-titre</mat-card-subtitle>
+       <!-- <mat-card-subtitle> sous-titre</mat-card-subtitle> -->
     </mat-card-header>
     <img mat-card-image src= "{{path}}" alt = "photo armoire">
     <mat-card-content>
@@ -16,22 +17,27 @@
     <div class="mdc-card__actions">
         <div class="mdc-card__action-icons">
 
-          <button class="but-like" aria-pressed="false"  title="like" (click)="onClickLike()">
+          <button class="but-like" aria-pressed="false"  title="like" (click)="onClickLike()" >
+          <!-- <button class="but-like" aria-pressed="false"  title="like" (click)="onClickLike()"  [(ngModel)]="like"> -->
             <mat-icon [ngStyle]="{'color': color_like_but}" class="but-like" matSuffix>favorite</mat-icon>
-            <!-- <mat-icon class="but-like" [color]="color_like_but" matSuffix>favorite</mat-icon> -->
-            <!-- <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">favorite</i> -->
           </button>
 
           <form class="example-form">
             <mat-form-field class="form-field" >
               <mat-label class="monLabel">Saisir un commentaire</mat-label>
               <!-- <input class="input-commentaire" matInput placeholder="Saisir un commentaire" value="commentaires"></input> -->
-              <textarea class="text-commentaire" matInput placeholder="Ex. J'adore le comptoir sur cette phtoto"></textarea>
+              <input matInput 
+                placeholder="Ex. J'adore le comptoir sur cette phtoto"
+                [(ngModel)]="comment"
+                type="texte"
+                name="titleNewImg"
+              >
+              <!--  <textarea class="text-commentaire" matInput placeholder="Ex. J'adore le comptoir sur cette phtoto"  [(ngModel)]="comment"></textarea> --> 
               <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field>
           </form>
 
-          <button class='but-save' mat-raised-button (click)="saveComment()">  Sauvegarde</button>
+          <button class='but-save' mat-raised-button (click)="saveComment()">  sav l'image</button>
 
         </div>
       </div>

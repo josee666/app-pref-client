@@ -17,11 +17,14 @@ export class NatCardComponent implements OnInit {
   //   }
 
     @Input() path:string;
+    @Input() index:number;
     @Input() title:string;
     @Input() desc:string;
     @Input() avatar:string;
+    @Input() cardType:string;
+    @Input() like:boolean = false;
+		@Input() comment:string = '';
     
-    like = false;
     color_like_but = "black";
 
   constructor() { }
@@ -29,9 +32,9 @@ export class NatCardComponent implements OnInit {
 
   ngOnInit() {
   }
-saveComment(){
-  console.log('save')
-}
+// saveComment(){
+//   console.log('save')
+// }
 
 onClickLike(){
 	console.log('like')

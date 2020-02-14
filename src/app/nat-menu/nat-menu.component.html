@@ -1,6 +1,7 @@
 <mat-sidenav-container>
 
-    <mat-sidenav #sidenav 
+    <mat-sidenav 
+        #sidenav
         mode="over" 
         hasBackdrop = "False"
         fixedInViewport = "fixe"
@@ -48,17 +49,26 @@
                 Cuisine
             </mat-list-item>
         </mat-nav-list>
+
         <mat-nav-list>
-           
-        <mat-list-item (click)="onClicBathtub();sidenav.toggle()">
-            <mat-icon matListIcon>bathtub</mat-icon>
-                Salle de bain
-            </mat-list-item>
+            <mat-list-item (click)="onClicBathtub();sidenav.toggle()">
+                <mat-icon matListIcon>bathtub</mat-icon>
+                    Salle de bain
+                </mat-list-item>
+            </mat-nav-list>
+        
+        <mat-nav-list>
+            <mat-list-item (click)="onClicAddImg();sidenav.toggle()">
+                <mat-icon matListIcon>add_photo_alternate</mat-icon>
+                <!-- <mat-icon matListIcon>perm_media</mat-icon> -->
+                    Ajouter des photos trouvées sur internet
+                </mat-list-item>
         </mat-nav-list>
 
     
     </mat-sidenav>
   
+    <!-- contenue menu ouvert -->
     <mat-sidenav-content>
         <button
             mat-icon-button
@@ -73,9 +83,11 @@
 
         <app-accueil *ngIf="accueilIsOn"></app-accueil>
 
+        <!-- Bonne list de card en fonction de la list cuisine, salle bain, perso, etc -->
         <app-card-container 
             [listCard]="listCard" 
             [avatar]="avatar"
+            [cardType] = "cardType"
             *ngIf="cardIsOn">
         </app-card-container>
 

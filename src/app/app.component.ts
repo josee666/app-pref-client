@@ -7,15 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'pref-client';
-  mesCards = [
-    {
-      path:"../assets/photo/armoire0.jpg",
-      title:"titre photo 0"
-    },
-    {
-      path:"../assets/photo/armoire1.jpg",
-      title:"titre photo 1"
-  }
-]
+
 
 }

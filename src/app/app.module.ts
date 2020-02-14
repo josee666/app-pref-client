@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {FormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,6 +52,8 @@ import {MatTreeModule} from '@angular/material/tree';
 import { AccueilComponent } from './accueil/accueil.component';
 import { CardContainerComponent } from './card-container/card-container.component';
 import { LoginComponent } from './login/login.component';
+import { CardAddComponent } from './card-add/card-add.component';
+import { CardService} from '../app/services/card-service' 
 
 
 
@@ -61,12 +64,15 @@ import { LoginComponent } from './login/login.component';
     NatMenuComponent,
     AccueilComponent,
     CardContainerComponent,
-    LoginComponent
+    LoginComponent,
+    CardAddComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    
     MatCardModule, 
     MatButtonModule,
     MatSidenavModule,
@@ -114,7 +120,9 @@ import { LoginComponent } from './login/login.component';
     PortalModule,
     ScrollingModule,
   ],
-  providers: [],
+  
+  providers: [CardService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
