@@ -16,21 +16,21 @@ export class CardService{
 		title: 'titre photo 1',
 		desc: 'une petite description de la photo 1',
 		like:true,
-		comment:'comment'
+		comment:''
 		}, 
 		{
 		path: './assets/photo/cuisine2.jpg',
 		title: 'titre photo 2',
 		desc: 'une petite description de la photo 2',
 		like:true,
-		comment:'comment'
+		comment:''
 		},
 		{
 		path: './assets/photo/cuisine3.jpg',
 		title: 'titre photo 3',
 		desc: 'une petite description de la photo 3',
 		like:false,
-		comment:'comment'
+		comment:''
 		},
 
 		{
@@ -91,16 +91,17 @@ export class CardService{
 		// }
 
 		let goodList:any[];
+		goodList = this.getListFromType(typeList)
 
-		if (typeList === 'kitchen'){
-            goodList = this.listCardKitchen;
-		}
-		else if(typeList === 'bathtub'){
-			goodList = this.listCardBathtub
-		}
-		else if(typeList === 'custom'){
-			goodList= this.listCardCustomImg
-		}
+		// if (typeList === 'kitchen'){
+        //     goodList = this.listCardKitchen;
+		// }
+		// else if(typeList === 'bathtub'){
+		// 	goodList = this.listCardBathtub
+		// }
+		// else if(typeList === 'custom'){
+		// 	goodList= this.listCardCustomImg
+		// }
 debugger;
 		goodList.push(
 			{
@@ -113,8 +114,12 @@ debugger;
 		)
 	}
 
-	save(cardType){
-		console.log('salve list', cardType);
+	saveACard(cardType, cardIndex, like, comment){
+		console.log('save card ',cardIndex, cardType);
+		let goodList = this.getListFromType(cardType);
+		goodList[cardIndex].like = like;
+		goodList[cardIndex].comment = comment;
+
 	}
 
 	// success(){

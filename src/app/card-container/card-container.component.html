@@ -7,6 +7,7 @@
 
 <div *ngIf="listCard.length>0" class="div-card-container">
     <app-nat-card *ngFor="let maCard of listCard; let i = index"
+        [index]="i"
         [path]="maCard.path" 
         [desc]= "maCard.desc" 
         [title]="maCard.title"

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NatCard} from '../natCard'
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { CardService } from '../services/card-service';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class NatCardComponent implements OnInit {
     
     color_like_but = "black";
 
-  constructor() { }
+  constructor(private cardService:CardService) { }
 
 
   ngOnInit() {
@@ -44,9 +45,16 @@ onClickLike(){
 	}else{
 		this.color_like_but = "black"
 		this.like = false
-	}
-
-
+  };
 }
+  
+  saveComment(){
+    console.log("saveComment");
+    debugger;
+    this.cardService.saveACard(this.cardType, this.index, this.like, this.comment);
+
+  }
+
+
 
 }
