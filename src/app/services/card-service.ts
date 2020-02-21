@@ -1,73 +1,136 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CardService{
 
+  	constructor(private httpClient: HttpClient) { }
 
-  	constructor() { }
-
-	  valid:boolean;
+	valid:boolean;
+	urlBd = "https://preferenceclient.firebaseio.com"
+	user = 'test'
 	  
-	listCardKitchen = [
-		{
-			path: './assets/photo/cuisine1.jpg',
-			title: 'titre photo 1',
-			desc: 'une petite description de la photo 1',
-			like:true,
-			comment:''
-		}, 
-		{
-			path: './assets/photo/cuisine2.jpg',
-			title: 'titre photo 2',
-			desc: 'une petite description de la photo 2',
-			like:true,
-			comment:''
-		},
-		{
-			path: './assets/photo/cuisine3.jpg',
-			title: 'titre photo 3',
-			desc: 'une petite description de la photo 3',
-			like:false,
-			comment:''
-		},
+	listCardKitchen = [];
+	// 	{
+	// 		path: './assets/photo/cuisine1.jpg',
+	// 		title: 'titre photo 1',
+	// 		desc: 'une petite description de la photo 1',
+	// 		like:true,
+	// 		comment:''
+	// 	}, 
+	// 	{
+	// 		path: './assets/photo/cuisine2.jpg',
+	// 		title: 'titre photo 2',
+	// 		desc: 'une petite description de la photo 2',
+	// 		like:true,
+	// 		comment:''
+	// 	},
+	// 	{
+	// 		path: './assets/photo/cuisine3.jpg',
+	// 		title: 'titre photo 3',
+	// 		desc: 'une petite description de la photo 3',
+	// 		like:false,
+	// 		comment:''
+	// 	},
 
-		{
-			path: '//maisonetdemeure.com/wp-content/uploads/imported/galleries/md-shot-5_SUP_HH_AU09.jpg',
-			title: 'la cuisine de Ricardo :)',
-			desc: 'Nice cuisine!!',
-			like:false,
-			comment:''
-			}
-
-	];
+	// 	{
+	// 		path: '//maisonetdemeure.com/wp-content/uploads/imported/galleries/md-shot-5_SUP_HH_AU09.jpg',
+	// 		title: 'la cuisine de Ricardo :)',
+	// 		desc: 'Nice cuisine!!',
+	// 		like:false,
+	// 		comment:''
+	// 		}
+	// ];
 	
-	listCardBathtub = [
-		{
-			path: './assets/photo/salle_bain1.jpg',
-			title: 'titre photo 1',
-			desc: 'une petite description de la photo 1',
-			like:false,
-			comment:''
-		}, 
-		{
-			path: './assets/photo/salle_bain2.jpg',
-			title: 'titre photo 2',
-			desc: 'une petite description de la photo 2',
-			like:false,
-			comment:''
-		},
-		{
-			path: './assets/photo/salle_bain3.jpg',
-			title: 'titre photo 3',
-			desc: 'une petite description de la photo 3',
-			like:false,
-			comment:''
+	listCardBathtub = []
+	// 	{
+	// 		path: './assets/photo/salle_bain1.jpg',
+	// 		title: 'titre photo 1',
+	// 		desc: 'une petite description de la photo 1',
+	// 		like:false,
+	// 		comment:''
+	// 	}, 
+	// 	{
+	// 		path: './assets/photo/salle_bain2.jpg',
+	// 		title: 'titre photo 2',
+	// 		desc: 'une petite description de la photo 2',
+	// 		like:false,
+	// 		comment:''
+	// 	},
+	// 	{
+	// 		path: './assets/photo/salle_bain3.jpg',
+	// 		title: 'titre photo 3',
+	// 		desc: 'une petite description de la photo 3',
+	// 		like:false,
+	// 		comment:''
+	// 	}
+	//   ];
+	  listCardCustomImg =[];
+	
+	// listCardIsLoad:Promise<boolean>
+
+	getUrlBdWithUserAndType(cardType) {
+		let urlBdSaveList = this.urlBd;
+		urlBdSaveList+= "/";
+		urlBdSaveList+= this.user;
+
+		if (cardType === 'kitchen'){
+			urlBdSaveList+= '/listCardKitchen.json';
+		}else if (cardType === 'bathtub'){
+			urlBdSaveList+= '/listCardBathtub.json';
+		}else if (cardType === 'custom'){
+			urlBdSaveList+= '/listCardCustom.json';
 		}
-  ];
+
+		return urlBdSaveList;
+	}
+
+	saveListCardToServer(cardType) {
+
+		let urlBdSaveList = this.getUrlBdWithUserAndType(cardType)
+		
+		this.httpClient
+		  .post(urlBdSaveList, this.listCardKitchen)
+		//   .post('https://preferenceclient.firebaseio.com/listCardKitchen.json', this.listCardKitchen)
+		  .subscribe(
+			() => {
+			  console.log('Enregistrement cuisine terminé !');
+			},
+			(error) => {
+			  console.log('Erreur ! : ' + error);
+			}
+		  );
+	}
   
-    listCardCustomImg =[];
+	checkIfUrlExistOnBd(url){
+		console.log('check bd')
+
+	}
+
+	getListCardsFromServer(cardType): any {
+		debugger;
+		let urlBdSaveList = this.getUrlBdWithUserAndType(cardType);
+		return this.httpClient
+		  .get<any[]>(urlBdSaveList)
+		//   .get<any[]>('https://httpclient-demo.firebaseio.com/appareils.json')
+		  .subscribe(
+			(response) => {
+				console.log('reponse');
+				console.log(Object.values(response));
+				this.setListFromType(cardType, Object.values(response)[0])
+				// cardLoad = Promise.resolve(true)
+			//   this.appareils = response;
+			//   this.emitAppareilSubject();
+			},
+			(error) => {
+			  console.log('Erreur dans le getList server ! : ' + error);
+			}
+			
+		  );
+
+	}
   
     getListFromType(typeList:string){
         if (typeList === 'kitchen'){
@@ -82,6 +145,7 @@ export class CardService{
 	}
 
 	setListFromType(typeList:string, listCards:any[]){
+		debugger;
 		if (typeList === 'kitchen'){
             this.listCardKitchen = listCards;
 		}

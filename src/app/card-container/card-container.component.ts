@@ -14,17 +14,35 @@ export class CardContainerComponent implements OnInit {
   @Input() listCard:any[];
   @Input() cardType:string;
   
+  // cardLoad:Promise<boolean>;
   constructor(private cardService:CardService) { }
 
   ngOnInit() {
-    this.listCard = this.cardService.getListFromType(this.cardType)
-  }
+    // this.listCard = this.cardService.getListFromType(this.cardType)
+    debugger;
+    this.cardService.getListCardsFromServer(this.cardType).subscribe(data => {
+      debugger;
+      if (data[0])
+          // this.article=data[0];
+          debugger;
+          this.listCard = this.cardService.getListFromType(this.cardType);
+          debugger;
+   })
+};
+    // this.listCard = this.cardService.getListFromType(this.cardType);
+  //   debugger;
+  // }
+
 
   ngOnDestroy(){
     // this.save()
-
   }
-  
 
+  saveListCard(){
+    console.log('save on server');
+    this.cardService.saveListCardToServer(this.cardType);
+  }
+
+  
 
 }
