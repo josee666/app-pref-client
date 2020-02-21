@@ -12,7 +12,7 @@ export class CardContainerComponent implements OnInit {
   
   @Input() avatar:string; 
   @Input() listCard:any[];
-  @Input() cardType: '';
+  @Input() cardType:string;
   
   constructor(private cardService:CardService) { }
 
