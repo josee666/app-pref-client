@@ -19,10 +19,13 @@
 
           <button class="but-like" aria-pressed="false"  title="like" (click)="onClickLike()" >
           <!-- <button class="but-like" aria-pressed="false"  title="like" (click)="onClickLike()"  [(ngModel)]="like"> -->
-            <mat-icon [ngStyle]="{'color': color_like_but}" class="but-like" matSuffix>favorite</mat-icon>
+              <mat-icon [ngClass]="{'color_like_but': like=== true, 
+                                    'color_not_like_but' : like===false }" 
+                  class="but-like" matSuffix>favorite
+              </mat-icon>
           </button>
 
-          <form class="example-form">
+          <form >
             <mat-form-field class="form-field" >
               <mat-label class="monLabel">Saisir un commentaire</mat-label>
               <!-- <input class="input-commentaire" matInput placeholder="Saisir un commentaire" value="commentaires"></input> -->
@@ -31,13 +34,14 @@
                 [(ngModel)]="comment"
                 type="texte"
                 name="titleNewImg"
+                (focusout)="saveACard()"
               >
               <!--  <textarea class="text-commentaire" matInput placeholder="Ex. J'adore le comptoir sur cette phtoto"  [(ngModel)]="comment"></textarea> --> 
               <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field>
           </form>
 
-          <button class='but-save' mat-raised-button (click)="saveComment()">  sauvegarde l'image</button>
+          <button class='but-save' mat-raised-button (click)="saveACard()">  sauvegarde </button>
 
         </div>
       </div>

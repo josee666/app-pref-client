@@ -22,13 +22,9 @@ export class CardContainerComponent implements OnInit {
 
   ngOnDestroy(){
     // this.save()
-    this.cardService.save(this.cardType);
+
   }
   
-  save(){
-    debugger;
-    console.log('save');
-    this.cardService.save(this.cardType);
-  }
+
 
 }

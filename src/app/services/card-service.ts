@@ -12,25 +12,25 @@ export class CardService{
 	  
 	listCardKitchen = [
 		{
-		path: './assets/photo/cuisine1.jpg',
-		title: 'titre photo 1',
-		desc: 'une petite description de la photo 1',
-		like:true,
-		comment:''
+			path: './assets/photo/cuisine1.jpg',
+			title: 'titre photo 1',
+			desc: 'une petite description de la photo 1',
+			like:true,
+			comment:''
 		}, 
 		{
-		path: './assets/photo/cuisine2.jpg',
-		title: 'titre photo 2',
-		desc: 'une petite description de la photo 2',
-		like:true,
-		comment:''
+			path: './assets/photo/cuisine2.jpg',
+			title: 'titre photo 2',
+			desc: 'une petite description de la photo 2',
+			like:true,
+			comment:''
 		},
 		{
-		path: './assets/photo/cuisine3.jpg',
-		title: 'titre photo 3',
-		desc: 'une petite description de la photo 3',
-		like:false,
-		comment:''
+			path: './assets/photo/cuisine3.jpg',
+			title: 'titre photo 3',
+			desc: 'une petite description de la photo 3',
+			like:false,
+			comment:''
 		},
 
 		{
@@ -81,6 +81,18 @@ export class CardService{
 		}
 	}
 
+	setListFromType(typeList:string, listCards:any[]){
+		if (typeList === 'kitchen'){
+            this.listCardKitchen = listCards;
+		}
+		else if(typeList === 'bathtub'){
+			this.listCardBathtub = listCards;
+		}
+		else if(typeList === 'custom'){
+			this.listCardCustomImg = listCards;
+		}
+	}
+
 	addCardToList(typeList:string, pathImg:string, title:string, description:string){
 		// this.checkImage(pathImg, this.success, this.fail);
 		// this.checkImage(pathImg, this.success, this.fail);
@@ -93,16 +105,6 @@ export class CardService{
 		let goodList:any[];
 		goodList = this.getListFromType(typeList)
 
-		// if (typeList === 'kitchen'){
-        //     goodList = this.listCardKitchen;
-		// }
-		// else if(typeList === 'bathtub'){
-		// 	goodList = this.listCardBathtub
-		// }
-		// else if(typeList === 'custom'){
-		// 	goodList= this.listCardCustomImg
-		// }
-debugger;
 		goodList.push(
 			{
 				path: pathImg,
@@ -121,6 +123,8 @@ debugger;
 		goodList[cardIndex].comment = comment;
 
 	}
+
+
 
 	// success(){
 	// 	console.log('success')

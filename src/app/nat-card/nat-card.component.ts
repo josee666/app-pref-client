@@ -26,7 +26,7 @@ export class NatCardComponent implements OnInit {
     @Input() like:boolean = false;
 		@Input() comment:string = '';
     
-    color_like_but = "black";
+    // color_like_but = "black";
 
   constructor(private cardService:CardService) { }
 
@@ -38,22 +38,24 @@ export class NatCardComponent implements OnInit {
 // }
 
 onClickLike(){
-	console.log('like')
+  debugger;
+	console.log('like');
 	if (!this.like){
-		this.color_like_but = "orangered"
-		this.like = true
+		this.like = true;
 	}else{
-		this.color_like_but = "black"
-		this.like = false
+		this.like = false;
   };
+  this.saveACard();
 }
   
-  saveComment(){
+saveACard(){
     console.log("saveComment");
     debugger;
     this.cardService.saveACard(this.cardType, this.index, this.like, this.comment);
 
   }
+
+
 
 
 
